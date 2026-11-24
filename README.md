@@ -35,7 +35,7 @@ More are in [docs/screenshots](docs/screenshots).
 ## What it is for
 
 Seeing where things stand, and getting the debt gone faster. Not detailed
-record-keeping; the desktop app does that.
+record-keeping.
 
 Everything comes in one of four ways:
 
@@ -66,18 +66,15 @@ nothing rather than mixing cost with market, why an unknown expense category is
 left as "other" rather than guessed, and why a locked database reports being
 unreadable instead of showing an empty list.
 
-## Relationship to the desktop app
+## Where it came from
 
-The desktop app lives in a separate repo at `../QuietLedger` and is not affected
-by anything here. It keeps running on Linux exactly as it does today.
+QuietLedger started as a Python desktop app for Linux. That app was never
+published and is retired. This is a rewrite, not a port. The user interface is
+new, and what carried over is the database schema, the domain model, the debt
+snowball algorithm, the tax estimator logic and the encrypted backup format.
 
-This is a rewrite, not a port. Roughly three quarters of the desktop codebase is
-PyQt6, which does not run on Android, so the user interface is new. What carries
-over is the database schema, the domain model, the debt snowball algorithm, the
-tax estimator logic, and the encrypted backup format.
-
-Data moves between the two through the existing `.ftbackup` format, so either
-app can hand off to the other.
+`scripts/desktop-to-android.py` and `scripts/compare-schema.py` are left over
+from moving data off the old app. Nobody else needs them.
 
 ## Status
 
@@ -200,7 +197,7 @@ Verify a signature:
 ./scripts/build-apk.sh                    # debug APK into ~/QuietLedger-APKs
 ./scripts/build-apk.sh release            # signed release APK and AAB
 python3 scripts/generate-palette.py       # regenerate colours, with contrast checks
-python3 scripts/compare-schema.py         # diff schema against the desktop app
+python3 scripts/compare-schema.py         # diff schema against the retired desktop app
 ```
 
 ## Repo layout
