@@ -1,0 +1,54 @@
+# Real financial data never gets committed. Anything in private/ stays local.
+private/
+*.ftbackup
+*.db
+*.db-shm
+*.db-wal
+
+# Broker exports. CSVs are blocked everywhere by default, since they hold real
+# positions. samples/fidelity/ is the one reviewed exception: the repo is
+# private and the files there are checked before being committed.
+*.csv
+# One reviewed file, by name. This used to allow every CSV in that folder, and a
+# real Fidelity export was committed through it: eight actual IRA positions with
+# their values. The README had always said to redact the numbers and name the
+# file positions.redacted.csv. The rule did not enforce it.
+!samples/fidelity/positions.redacted.csv
+
+# Signing material
+*.jks
+*.keystore
+keystore.properties
+local.properties
+
+# Gradle and Android build output
+.gradle/
+build/
+captures/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+
+# Android Studio and IntelliJ
+.idea/
+*.iml
+.navigation/
+
+# OS noise
+.DS_Store
+Thumbs.db
+*~
+.directory
+
+# Logs
+*.log
+
+# Python bytecode from the helper scripts.
+__pycache__/
+*.pyc
+
+# Built from a real backup by scripts/verify-restore.sh for each run
+app/src/androidTest/assets/restore-from-server.qlbk

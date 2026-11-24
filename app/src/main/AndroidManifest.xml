@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Lets the app ask the system to hide other apps' overlay windows while it is
+      in front, which is the defence against tapjacking of the passphrase screen.
+      A normal permission, so it is granted at install with no prompt, and it
+      only ever reduces what other apps can do. Android 12 and above; below that
+      the fallback is filterTouchesWhenObscured, which refuses taps arriving
+      through an overlay.
+    -->
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
+
+    <!--
+      Package visibility filtering, Android 11 and above, means queryIntentActivities
+      returns nothing for intents the app has not declared an interest in. Without
+      this the authenticator handoff button would silently never appear, because the
+      check for a handler would always come back empty.
+
+      Scoped to the one scheme. No QUERY_ALL_PACKAGES, which would let this app
+      enumerate everything installed and is not needed to ask a single question.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="otpauth" />
+        </intent>
+    </queries>
+
+    <!-- No cloud backup. Financial data must never leave the device through
+         Android's automatic backup or device transfer. -->
+    <application
+        android:name=".QuietLedgerApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.QuietLedger">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden"
+            android:theme="@style/Theme.QuietLedger">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

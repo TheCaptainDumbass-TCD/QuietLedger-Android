@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Deliberate lint decisions, each with a reason. Nothing is silenced merely
+  because it was noisy.
+
+  Everything not listed here is expected to be fixed rather than ignored, and
+  `lintVitalRelease` already gates a release build.
+-->
+<lint>
+
+    <!--
+      Lint says the v26 qualifier is unnecessary at minSdk 29 and suggests
+      merging into plain mipmap-anydpi. Following that advice breaks the build:
+      AAPT then reports "resource mipmap/ic_launcher not found". Verified by
+      doing it, failing, and reverting. Correct advice in general, wrong for
+      adaptive icon XML.
+    -->
+    <issue id="ObsoleteSdkInt">
+        <ignore path="src/main/res/mipmap-anydpi-v26" />
+    </issue>
+
+    <!--
+      Dependency versions are pinned on purpose, and deliberately not the very
+      newest. A release published in the last few days has not been vetted, and
+      a meaningful share of supply chain attacks are caught and pulled within
+      that window. sqlcipher 4.19.1 landed two days before this was written; it
+      will be adopted once it has aged. Same reasoning for the Gradle version.
+    -->
+    <!--
+      The KTX SharedPreferences.edit {} extension returns Unit, discarding the
+      boolean that commit() gives back. In these two files that boolean is the
+      point: a key that silently fails to persist means a database that can never
+      be opened again. Scoped to the two files that need it, not project-wide.
+    -->
+    <issue id="UseKtx">
+        <ignore path="src/main/java/com/quietwire/quietledger/core/crypto/DatabaseKeyStore.kt" />
+        <ignore path="src/main/java/com/quietwire/quietledger/core/totp/TotpStore.kt" />
+    </issue>
+
+    <issue id="NewerVersionAvailable" severity="ignore" />
+    <issue id="AndroidGradlePluginVersion" severity="ignore" />
+
+    <!--
+      Treat anything in the Security category as an error rather than a warning.
+      A security warning that does not fail the build is a security warning
+      nobody reads. This is what caught the missing fullBackupContent, which
+      neither MobSF nor the hand-rolled audit script noticed.
+    -->
+    <issue id="DataExtractionRules" severity="error" />
+    <issue id="AllowBackup" severity="error" />
+    <!-- ExportedActivity, CleartextTraffic and MissingTlsConfiguration were
+         listed here but do not exist as issue ids in this lint version, and lint
+         flags unknown ids. Removed rather than left as dead config. -->
+    <issue id="ExportedContentProvider" severity="error" />
+    <issue id="ExportedReceiver" severity="error" />
+    <issue id="ExportedService" severity="error" />
+    <issue id="HardcodedDebugMode" severity="error" />
+    <issue id="TrustAllX509TrustManager" severity="error" />
+    <issue id="BadHostnameVerifier" severity="error" />
+    <issue id="UnsafeProtectedBroadcastReceiver" severity="error" />
+    <issue id="SetJavaScriptEnabled" severity="error" />
+    <issue id="JavascriptInterface" severity="error" />
+    <issue id="SQLiteString" severity="error" />
+    <issue id="WorldReadableFiles" severity="error" />
+    <issue id="WorldWriteableFiles" severity="error" />
+    <issue id="UnsafeDynamicallyLoadedCode" severity="error" />
+    <issue id="PackagedPrivateKey" severity="error" />
+    <issue id="CustomX509TrustManager" severity="error" />
+    <issue id="InsecureBaseConfiguration" severity="error" />
+    <issue id="UnsafeIntentLaunch" severity="error" />
+
+</lint>

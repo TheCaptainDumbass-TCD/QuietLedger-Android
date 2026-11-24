@@ -1,0 +1,641 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 6,
+    "identityHash": "2a551d2a43a56e472688b16915c42ff5",
+    "entities": [
+      {
+        "tableName": "debt",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `category` TEXT NOT NULL, `current_balance_minor` INTEGER NOT NULL, `original_balance_minor` INTEGER, `minimum_payment_minor` INTEGER NOT NULL, `scheduled_payment_minor` INTEGER NOT NULL, `payment_frequency` TEXT NOT NULL, `apr_is_promotional` INTEGER NOT NULL, `apr_basis_points` INTEGER, `due_day_of_month` INTEGER, `closed_at` INTEGER, `notes` TEXT NOT NULL, `sort_order` INTEGER NOT NULL, `created_at` INTEGER NOT NULL, `updated_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentBalanceMinor",
+            "columnName": "current_balance_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originalBalanceMinor",
+            "columnName": "original_balance_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "minimumPaymentMinor",
+            "columnName": "minimum_payment_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scheduledPaymentMinor",
+            "columnName": "scheduled_payment_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "paymentFrequency",
+            "columnName": "payment_frequency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aprIsPromotional",
+            "columnName": "apr_is_promotional",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aprBasisPoints",
+            "columnName": "apr_basis_points",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "dueDayOfMonth",
+            "columnName": "due_day_of_month",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "closedAt",
+            "columnName": "closed_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_debt_closed_at",
+            "unique": false,
+            "columnNames": [
+              "closed_at"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_debt_closed_at` ON `${TABLE_NAME}` (`closed_at`)"
+          },
+          {
+            "name": "index_debt_category",
+            "unique": false,
+            "columnNames": [
+              "category"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_debt_category` ON `${TABLE_NAME}` (`category`)"
+          }
+        ]
+      },
+      {
+        "tableName": "recurring_expense",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `category` TEXT NOT NULL, `amount_minor` INTEGER NOT NULL, `frequency` TEXT NOT NULL, `due_day_of_month` INTEGER, `is_active` INTEGER NOT NULL, `ended_at` INTEGER, `notes` TEXT NOT NULL, `sort_order` INTEGER NOT NULL, `created_at` INTEGER NOT NULL, `updated_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amountMinor",
+            "columnName": "amount_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "frequency",
+            "columnName": "frequency",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dueDayOfMonth",
+            "columnName": "due_day_of_month",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "is_active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAt",
+            "columnName": "ended_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_recurring_expense_is_active",
+            "unique": false,
+            "columnNames": [
+              "is_active"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_recurring_expense_is_active` ON `${TABLE_NAME}` (`is_active`)"
+          },
+          {
+            "name": "index_recurring_expense_category",
+            "unique": false,
+            "columnNames": [
+              "category"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_recurring_expense_category` ON `${TABLE_NAME}` (`category`)"
+          }
+        ]
+      },
+      {
+        "tableName": "balance_change",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `subject_type` TEXT NOT NULL, `subject_id` INTEGER NOT NULL, `field` TEXT NOT NULL, `previous_minor` INTEGER, `new_minor` INTEGER NOT NULL, `delta_minor` INTEGER NOT NULL, `source` TEXT NOT NULL, `subject_name` TEXT NOT NULL, `note` TEXT, `occurred_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subjectType",
+            "columnName": "subject_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subjectId",
+            "columnName": "subject_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "field",
+            "columnName": "field",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousMinor",
+            "columnName": "previous_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "newMinor",
+            "columnName": "new_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deltaMinor",
+            "columnName": "delta_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subjectName",
+            "columnName": "subject_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "occurredAt",
+            "columnName": "occurred_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_balance_change_subject_type_subject_id_occurred_at",
+            "unique": false,
+            "columnNames": [
+              "subject_type",
+              "subject_id",
+              "occurred_at"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_balance_change_subject_type_subject_id_occurred_at` ON `${TABLE_NAME}` (`subject_type`, `subject_id`, `occurred_at`)"
+          },
+          {
+            "name": "index_balance_change_occurred_at",
+            "unique": false,
+            "columnNames": [
+              "occurred_at"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_balance_change_occurred_at` ON `${TABLE_NAME}` (`occurred_at`)"
+          }
+        ]
+      },
+      {
+        "tableName": "savings_account",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `institution` TEXT NOT NULL, `current_balance_minor` INTEGER NOT NULL, `apy_basis_points` INTEGER, `purpose` TEXT NOT NULL, `goal_minor` INTEGER, `closed_at` INTEGER, `notes` TEXT NOT NULL, `sort_order` INTEGER NOT NULL, `created_at` INTEGER NOT NULL, `updated_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "institution",
+            "columnName": "institution",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentBalanceMinor",
+            "columnName": "current_balance_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "apyBasisPoints",
+            "columnName": "apy_basis_points",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "purpose",
+            "columnName": "purpose",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goalMinor",
+            "columnName": "goal_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "closedAt",
+            "columnName": "closed_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sort_order",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "holding",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `account_name` TEXT NOT NULL, `symbol` TEXT NOT NULL, `description` TEXT NOT NULL, `quantity_micros` INTEGER, `last_price_minor` INTEGER, `current_value_minor` INTEGER NOT NULL, `cost_basis_minor` INTEGER, `gain_loss_minor` INTEGER, `is_cash` INTEGER NOT NULL, `type` TEXT NOT NULL, `as_of` INTEGER NOT NULL, `imported_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accountName",
+            "columnName": "account_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "symbol",
+            "columnName": "symbol",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityMicros",
+            "columnName": "quantity_micros",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastPriceMinor",
+            "columnName": "last_price_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "currentValueMinor",
+            "columnName": "current_value_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "costBasisMinor",
+            "columnName": "cost_basis_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "gainLossMinor",
+            "columnName": "gain_loss_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isCash",
+            "columnName": "is_cash",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "asOf",
+            "columnName": "as_of",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "importedAt",
+            "columnName": "imported_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "metal_lot",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vendor` TEXT NOT NULL, `order_number` TEXT NOT NULL, `purchased_at` INTEGER NOT NULL, `description` TEXT NOT NULL, `metal` TEXT NOT NULL, `quantity_milli` INTEGER NOT NULL, `unit_weight_micro_oz` INTEGER NOT NULL, `weight_label` TEXT NOT NULL, `unit_price_minor` INTEGER NOT NULL, `extended_price_minor` INTEGER NOT NULL, `shipping_minor` INTEGER NOT NULL, `spot_price_minor` INTEGER, `source_file` TEXT NOT NULL, `notes` TEXT NOT NULL, `created_at` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vendor",
+            "columnName": "vendor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "orderNumber",
+            "columnName": "order_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "purchasedAt",
+            "columnName": "purchased_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "metal",
+            "columnName": "metal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityMilli",
+            "columnName": "quantity_milli",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitWeightMicroOz",
+            "columnName": "unit_weight_micro_oz",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weightLabel",
+            "columnName": "weight_label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unitPriceMinor",
+            "columnName": "unit_price_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "extendedPriceMinor",
+            "columnName": "extended_price_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shippingMinor",
+            "columnName": "shipping_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "spotPriceMinor",
+            "columnName": "spot_price_minor",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "sourceFile",
+            "columnName": "source_file",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "metal_spot_price",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`metal` TEXT NOT NULL, `price_per_oz_minor` INTEGER NOT NULL, `entered_at` INTEGER NOT NULL, PRIMARY KEY(`metal`))",
+        "fields": [
+          {
+            "fieldPath": "metal",
+            "columnName": "metal",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pricePerOzMinor",
+            "columnName": "price_per_oz_minor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enteredAt",
+            "columnName": "entered_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "metal"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2a551d2a43a56e472688b16915c42ff5')"
+    ]
+  }
+}

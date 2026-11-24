@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colours and typography are handled by Compose. This exists only so the
+         window has sane defaults before the first frame is drawn. The night
+         variant lives in values-night/ so a dark mode launch does not flash
+         white. -->
+    <style name="Theme.QuietLedger" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

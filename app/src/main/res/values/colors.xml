@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Taken from the desktop app icon so branding stays consistent. -->
+    <color name="ic_launcher_background">#192D41</color>
+</resources>

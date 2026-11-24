@@ -1,0 +1,80 @@
+[versions]
+agp = "9.4.1"
+kotlin = "2.4.20"
+composeBom = "2026.09.00"
+coreKtx = "1.19.1"
+activityCompose = "1.13.0"
+lifecycleRuntimeKtx = "2.11.0"
+junit = "4.13.2"
+ksp = "2.3.12"
+room = "2.8.5"
+sqlite = "2.7.1"
+# 4.19.1 exists but landed one day before this was written. Staying a release
+# back on the library that encrypts the database.
+sqlcipher = "4.19.0"
+biometric = "1.1.0"
+robolectric = "4.16"
+androidxTestCore = "1.7.0"
+androidxTestExtJunit = "1.3.0"
+androidxTestRunner = "1.7.0"
+hilt = "2.60.1"
+hiltNavigationCompose = "1.4.0"
+navigationCompose = "2.10.2"
+adaptive = "1.3.0"
+lifecycleViewmodelCompose = "2.11.0"
+coroutines = "1.10.2"
+serializationJson = "1.11.0"
+zxing = "3.5.3"
+
+[libraries]
+# Wraps the Storage Access Framework, so a folder you chose once can be written
+# to without any storage permission. 1.0.1 has been the stable release since
+# 2018.
+# Observes the whole app going to background, which is where the automatic
+# backup is triggered from. Android gives no reliable "app is closing" callback,
+# so ON_STOP on the process lifecycle is the honest hook.
+androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleRuntimeKtx" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version = "1.0.1" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+androidx-sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
+sqlcipher = { group = "net.zetetic", name = "sqlcipher-android", version.ref = "sqlcipher" }
+androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExtJunit" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidxTestRunner" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "adaptive" }
+androidx-material3-adaptive-layout = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "adaptive" }
+androidx-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleViewmodelCompose" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationJson" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+[plugins]
+# AGP 9 has built-in Kotlin support, so org.jetbrains.kotlin.android must not be
+# applied. The Compose compiler plugin is still applied separately.
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
